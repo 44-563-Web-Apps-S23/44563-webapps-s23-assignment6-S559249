@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html>
  
-<body>
+<head>
 <title>Painter entry - Aasrita Emani</title>
-<h1>Painter entry - [Aasrita Emani]</h1>
+</head>
 
+<body>
+
+    <h2>Guess the Painter</h2>
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+    <label for="painter_name">The hidden painter name:</label>
+    <input type="password" id="painter_name" name="painter_name" value="Monet"><br>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+    <label for="guess">Guess the painter:</label>
+    <input type="text" id="guess" name="guess"><br>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
+    <input type="button" onclick="checkPainter()" value="Check the guess"><br>
 </form>
 
 
-<p id="result">This text will be replaced </p>
+<p>Good guesses: <span id="good">0</span></p>
+<p>Oops: <span id="oops">0</span></p>
 
 <script> 
+    var good = 0;
+    var oops = 0;
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
+    function checkPainter() {
+      var painterName = document.getElementById("painter_name").value;
+      var guess = document.getElementById("guess").value;
+
+      if (guess === painterName) {
+        good++;
+        alert("You got it right!");
+      } else {
+        oops++;
+        alert("Sorry!");
+      }
+
+      document.getElementById("good").innerHTML = good;
+      document.getElementById("oops").innerHTML = oops;
     }
-}
-</script>
+  </script>
 
 </body>
-</html> 
+
+</html>
