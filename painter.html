@@ -7,42 +7,44 @@
 
 <body>
 
-    <h2>Guess the Painter</h2>
-<form>
-    <label for="painter_name">The hidden painter name:</label>
-    <input type="password" id="painter_name" name="painter_name" value="Monet"><br>
+    <h2>Painter entry Aasrita Emani</h2>
+    
+    <form>
+        <label for="form_painter"> The hidden painter name </label>
+        <input type ="password" id="password" name="form_painter" min=10 max=50 step=2 value="Monet"> <br>
+    
+        <label for="form_check">Guess the painter</label>
+        <input type ="text" id="check" name="form_check" min=10 max=50 step=2> <br>
+    
+        <input type="button" onclick="checkPainter()" value="Check the guess">
+    </form>
+    <p>Good guesses: <span id="good">0</span></p>
+    <p>Oops: <span id="oops">0</span></p>
 
-    <label for="guess">Guess the painter:</label>
-    <input type="text" id="guess" name="guess"><br>
+    <script> 
+    var good=0
+    var oops=0
+    function checkPainter(){
+        console.log("Getting form values")
+        password = document.getElementById("password").value
+        check = document.getElementById("check").value
+        confirmed = confirm("Are these the values? "+password+" and "+check)
+        
+        out = document.getElementById("result")
+        if(password==check){
+            alert("You got it right")
+            good=good+1
+        } else {
+            oops=oops+1
+            alert('Sorry')
+        }
+    
 
-    <input type="button" onclick="checkPainter()" value="Check the guess"><br>
-</form>
+    document.getElementById("good").innerHTML = good;
+    document.getElementById("oops").innerHTML = oops;
+   }
 
-
-<p>Good guesses: <span id="good">0</span></p>
-<p>Oops: <span id="oops">0</span></p>
-
-<script> 
-    var good = 0;
-    var oops = 0;
-
-    function checkPainter() {
-      var painterName = document.getElementById("painter_name").value;
-      var guess = document.getElementById("guess").value;
-
-      if (guess === painterName) {
-        good++;
-        alert("You got it right!");
-      } else {
-        oops++;
-        alert("Sorry!");
-      }
-
-      document.getElementById("good").innerHTML = good;
-      document.getElementById("oops").innerHTML = oops;
-    }
-  </script>
-
-</body>
-
-</html>
+    </script>
+    
+    </body>
+    </html>
