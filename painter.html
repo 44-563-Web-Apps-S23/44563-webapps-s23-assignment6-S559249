@@ -1,45 +1,74 @@
 <!DOCTYPE html>
 <html>
- <body>
+    <head>
+        <title>
+            Working on JS
+        </title>
+    </head>
+ 
+<body>
 
-    <h2>Painter entry Aasrita Emani</h2>
-    
-    <form>
-        <label for="form_painter"> The hidden painter name </label>
-        <input type ="password" id="password" name="form_painter" min=10 max=50 step=2 value="Monet"> <br>
-    
-        <label for="form_check">Guess the painter</label>
-        <input type ="text" id="check" name="form_check" min=10 max=50 step=2> <br>
-    
-        <input type="button" onclick="checkPainter()" value="Check the guess">
-    </form>
-    <p>Good guesses: <span id="good">0</span></p>
-    <p>Oops: <span id="oops">0</span></p>
+<h2>Painter entry Aasrita Emani</h2>
+<form>
+    <label for="form_painter">The hidden painter name</label>
+    <input type ="password" id="form_painter" name="form_painter" min=10 max=50 step=2 value="Monet"> <br>
 
-    <script> 
-    var good=0
-    var oops=0
-    function checkPainter(){
-        console.log("Getting form values")
-        password = document.getElementById("password").value
-        check = document.getElementById("check").value
-        confirmed = confirm("Are these the values? "+password+" and "+check)
+    <label for="form_check">Guess the painter</label>
+    <input type ="text" id="painter_inpt" name="form_check" min=10 max=50 step=2> <br>
+
+    <input type="button" onclick="checkPainter()" value="Check the guess">
+
+</form>
+    <p id="result">Result </p>
+    <div>
+
+        <img id="plnt_img" onclick="selectImage()" src="iris.jpg" height= "100px" width="100px" alt="gladiolus Plant">
+      
+      </div>
+    
+        <script> 
+        var good = 0
+        var oops = 0
         
-        out = document.getElementById("result")
-        if(password==check){
-            alert("You got it right")
-            good=good+1
-        } else {
-            oops=oops+1
-            alert('Sorry')
+        function checkPainter(){
+            
+            if(document.getElementById("form_painter").value==document.getElementById("painter_inpt").value)
+            {
+              alert('You got it right');
+              good=good+1;
+              
+            }
+            else
+            {
+                alert('Sorry');  
+                oops=oops+1;
+            }
+            document.getElementById("result").innerHTML='Right count: '+good+'.<br>Wrong count:'+oops+'.';
         }
+        
+        let useImage=1;
+            
+            function selectImage()
+            {
+            
+                switch(useImage)
+                {
+                case 1:
+                        document.getElementById("plnt_img").src="Nemophila.jpeg";
+                        useImage++;
+                        break;
+                case 2:
+                        document.getElementById("plnt_img").src="iris.jpg";
+                        useImage++;
+                        break;
+                 case 3:
+                        document.getElementById("plnt_img").src="Magnolia.jpg";
+                        useImage=1;
+                        break;
+                }
+            }
     
-
-    document.getElementById("good").innerHTML = good;
-    document.getElementById("oops").innerHTML = oops;
-   }
-
-    </script>
+        </script>
     
     </body>
     </html>
